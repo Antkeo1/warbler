@@ -1,8 +1,9 @@
 // my imports from package.json
-const express = require('express');
+const express = require('express')
 const app = express();
 const cors = require('cors');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const errorHandler = require('./handlers/error');
 
 const PORT = 8081;
 
@@ -19,6 +20,8 @@ app.use(function(req, res, next) {
     next(err);
 })
 
+app.use(errorHandler);
+
 app.listen(PORT, function() {
-    console.log('Server is running on port $(PORT)');
+    console.log(`Server is running on port ${PORT}`);
 })
